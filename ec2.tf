@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "ec2_instance" {
-  ami           = ""
+  ami           = "ami-08e0ca9924195beba"
   count=1
   key_name = "ansible"
   instance_type = "t2.micro"
