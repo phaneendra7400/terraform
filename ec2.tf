@@ -8,6 +8,15 @@ resource "aws_instance" "ec2_instance" {
   key_name = "ansible"
   instance_type = "t2.micro"
   security_groups= [ "security_tomcat_port"]
+      user_data = <<-EOF
+         #!bin/bash
+
+         sudo amazon-linux-extras install tomcat8.5
+
+          sudo systemctl enable tomcat
+
+         sudo systemctl start tomcat
+EOF
   tags= {
     Name = "tomcat_instance"
   }
@@ -38,15 +47,7 @@ resource "aws_security_group" "security_tomcat_port" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  user_data = <<-EOF
-         #!bin/bash
 
-         sudo amazon-linux-extras install tomcat8.5
-
-          sudo systemctl enable tomcat
-
-         sudo systemctl start tomcat
-EOF
     tags= {
     Name = "security_tomcat_port"
   }
