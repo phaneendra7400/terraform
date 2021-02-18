@@ -8,11 +8,5 @@ resource "aws_instance" "terraform" {
 tags ={
   name = "linux"
   }
-    user_data     = <<-EOF
-                  #!/bin/bash
-                  sudo su
-                  yum -y install http
-                  sudo systemctl enable httpd
-                  sudo systemctl start httpd
-                  EOF
+  
 }
