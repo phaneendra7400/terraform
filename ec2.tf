@@ -38,20 +38,17 @@ resource "aws_security_group" "security_tomcat_port" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  user_data = <<-EOF
+         #!bin/bash
 
-  tags= {
+         sudo amazon-linux-extras install tomcat8.5
+
+          sudo systemctl enable tomcat
+
+         sudo systemctl start tomcat
+EOF
+    tags= {
     Name = "security_tomcat_port"
   }
-  user_data = <<-EOF
-
- 
-#!bin/bash
-
-sudo amazon-linux-extras install tomcat8.5
-
- sudo systemctl enable tomcat
-
- sudo systemctl start tomcat
-EOF
 }
 
