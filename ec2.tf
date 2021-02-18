@@ -3,9 +3,16 @@ provider "aws" {
 }
 
 resource "aws_instance" "terraform" {
-  ami           = "ami-0fcd8d621cf9ab602"
+  ami           = "ami-08e0ca9924195beba"
   instance_type= "t2.micro"
 tags ={
-  name = "windows"
+  name = "linux"
   }
+    user_data     = <<-EOF
+                  #!/bin/bash
+                  sudo su
+                  yum -y install http
+                  sudo systemctl enable httpd
+                  sudo systemctl start httpd
+                  EOF
 }
