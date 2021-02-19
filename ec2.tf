@@ -3,33 +3,27 @@ provider "aws" {
 }
 
 resource "aws_instance" "ec2_instance" {
-  ami           = " ami-08e0ca9924195beba"
+  ami           = "ami-08e0ca9924195beba"
   count=1
   key_name = "ansible"
   instance_type = "t2.micro"
   security_groups= [ "security_tomcat_port"]
       user_data = <<-EOF
-         #!bin/bash
-     
-
- 
-sudo amazon-linux-extras install tomcat8.5
-
- 
-sudo systemctl enable tomcat
-
- 
-sudo systemctl start tomcat
-        
+       #!/bin/bash
+           yum -y java-1.8.0-openjdk-devel 
+            yum -y install tomcat 
+               systemctl enable tomcat 
+               systemctl start tomcat  
+                echo " //etc/systemd/system/{{to muser}}.service "
 EOF
   tags= {
     Name = "tomcat_instance"
   }
 }
 
-resource "aws_security_group" "security_tomcat_port" {
-  name        = "security_tomcat_port"
-  description = "security group for tomcat"
+resource "aws_security_group" "security_tom_port" {
+  name        = "security_tom_port"
+  description = "security group for tom"
 
   ingress {
     from_port   = 8080
@@ -54,7 +48,7 @@ resource "aws_security_group" "security_tomcat_port" {
   }
 
     tags= {
-    Name = "security_tomcat_port"
+    Name = "security_tom_port"
   }
 }
 
