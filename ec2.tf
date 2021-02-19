@@ -3,19 +3,19 @@ provider "aws" {
 }
 
 resource "aws_instance" "ec2_instance" {
-  ami           = "ami-08e0ca9924195beba"
+  ami           = " ami-08e0ca9924195beba"
   count=1
   key_name = "ansible"
   instance_type = "t2.micro"
   security_groups= [ "security_tomcat_port"]
       user_data = <<-EOF
          #!bin/bash
-
-         sudo amazon-linux-extras install tomcat8.5
-
-          sudo systemctl enable tomcat
-
-         sudo systemctl start tomcat
+         sudo su 
+         amazon-linux-extras install tomcat8.5 -y
+         systemctl enable tomcat
+         systemctl start tomcat
+         cd bin
+          ./startup.sh
 EOF
   tags= {
     Name = "tomcat_instance"
