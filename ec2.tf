@@ -11,7 +11,7 @@ resource "aws_instance" "ec2_instance" {
       user_data = <<-EOF
          #!bin/bash
          
-        sudo amazon-linux-extras install tomcat8.5 -y
+        sudo amazon-linux-extras install tomcat8.5 
         sudo systemctl enable tomcat
         sudo systemctl start tomcat
         
