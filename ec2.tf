@@ -10,10 +10,16 @@ resource "aws_instance" "ec2_instance" {
   security_groups= [ "security_tomcat_port"]
       user_data = <<-EOF
          #!bin/bash
-         
-        sudo amazon-linux-extras install tomcat8.5 
-        sudo systemctl enable tomcat
-        sudo systemctl start tomcat
+     #!bin/bash
+
+ 
+sudo amazon-linux-extras install tomcat8.5
+
+ 
+sudo systemctl enable tomcat
+
+ 
+sudo systemctl start tomcat
         
 EOF
   tags= {
