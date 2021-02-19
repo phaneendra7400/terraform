@@ -10,7 +10,7 @@ resource "aws_instance" "ec2_instance" {
   security_groups= [ "security_tomcat_port"]
       user_data = <<-EOF
          #!bin/bash
-     #!bin/bash
+     
 
  
 sudo amazon-linux-extras install tomcat8.5
