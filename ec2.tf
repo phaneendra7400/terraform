@@ -14,8 +14,7 @@ resource "aws_instance" "ec2_instance" {
          amazon-linux-extras install tomcat8.5 -y
          systemctl enable tomcat
          systemctl start tomcat
-         cd bin
-          ./startup.sh
+        
 EOF
   tags= {
     Name = "tomcat_instance"
