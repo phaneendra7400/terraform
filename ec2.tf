@@ -7,7 +7,7 @@ resource "aws_instance" "ec2_instance" {
   count=1
   key_name = "ansible"
   instance_type = "t2.micro"
-  security_groups= [ "security_tomcat_port"]
+  security_groups= [ "security_tom_port"]
       user_data = <<-EOF
        #!/bin/bash
            yum -y java-1.8.0-openjdk-devel 
